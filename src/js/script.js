@@ -4,8 +4,11 @@ startGame();
 //Si pression sur space afficher game.html
 function startGame() {
   var oldQuestions = [];
+  oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
+
   oxo.inputs.listenKeyOnce("space", function() {
     oxo.screens.loadScreen("game", function() {
+      oxo.inputs.cancelKeyListener('space');
       //object joueur1 et 2
       var player1 = { name: "player 1", score: 0 };
       var player2 = { name: "player 2", score: 0 };
@@ -214,14 +217,27 @@ function startGame() {
 
       /*----------------------------------function checkRand----------------------------------*/
       //function qui verifie si une question a deja ete poser
+
       console.log(oldQuestions.length);
       function checkRand() {
         if (oldQuestions.length == 10) {
           oldQuestions = [];
           oxo.screens.loadScreen("end", function() {
+            oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
             var endScorePlayer1 = document.getElementById("endScore__player1");
             var endScorePlayer2 = document.getElementById("endScore__player2");
             var homeReturn = document.getElementById("home__return");
+
+            var resultplayer1 = document.getElementById("result__player1");
+            var resultplayer2 = document.getElementById("result__player2");
+
+            if (player1["score"] > player2["score"]) {
+              resultplayer1.innerHTML = "GEEKMASTER!";
+              resultplayer2.innerHTML = "NOOB...";
+            } else {
+              resultplayer1.innerHTML = "NOOB...";
+              resultplayer2.innerHTML = "GEEKMASTER!";
+            }
 
             endScorePlayer1.innerHTML = player1["score"] + " pts";
             endScorePlayer2.innerHTML = player2["score"] + " pts";
@@ -316,81 +332,84 @@ function startGame() {
       //changement d'evenement
       var idQuestion = changeEvent();
 
-      //si le joueur 1 clique sur a
-      oxo.inputs.listenKey("a", function() {
-        console.log("touche a");
-        // je verifie ca reponse
-        checkReply(
-          questions[idQuestion]["reply1"],
-          questions[idQuestion]["goodReply"],
-          player1,
-          player2
-        );
-      });
-      oxo.inputs.listenKey("z", function() {
-        console.log("touche z");
-        checkReply(
-          questions[idQuestion]["reply2"],
-          questions[idQuestion]["goodReply"],
-          player1,
-          player2
-        );
-      });
-      oxo.inputs.listenKey("e", function() {
-        console.log("touche e");
-        checkReply(
-          questions[idQuestion]["reply3"],
-          questions[idQuestion]["goodReply"],
-          player1,
-          player2
-        );
-      });
-      oxo.inputs.listenKey("r", function() {
-        console.log("touche r");
-        checkReply(
-          questions[idQuestion]["reply4"],
-          questions[idQuestion]["goodReply"],
-          player1,
-          player2
-        );
-      });
+      if ( oxo.screens.currentScreen === 'game' ) {
+        //si le joueur 1 clique sur a
+        oxo.inputs.listenKey("a", function() {
+          console.log("touche a");
+          console.log(oxo.screens.currentScreen);
+          // je verifie ca reponse
+          checkReply(
+            questions[idQuestion]["reply1"],
+            questions[idQuestion]["goodReply"],
+            player1,
+            player2
+          );
+        });
+        oxo.inputs.listenKey("z", function() {
+          console.log("touche z");
+          checkReply(
+            questions[idQuestion]["reply2"],
+            questions[idQuestion]["goodReply"],
+            player1,
+            player2
+          );
+        });
+        oxo.inputs.listenKey("e", function() {
+          console.log("touche e");
+          checkReply(
+            questions[idQuestion]["reply3"],
+            questions[idQuestion]["goodReply"],
+            player1,
+            player2
+          );
+        });
+        oxo.inputs.listenKey("r", function() {
+          console.log("touche r");
+          checkReply(
+            questions[idQuestion]["reply4"],
+            questions[idQuestion]["goodReply"],
+            player1,
+            player2
+          );
+        });
 
-      oxo.inputs.listenKey("u", function() {
-        console.log("touche u");
-        checkReply(
-          questions[idQuestion]["reply1"],
-          questions[idQuestion]["goodReply"],
-          player2,
-          player1
-        );
-      });
-      oxo.inputs.listenKey("i", function() {
-        console.log("touche i");
-        checkReply(
-          questions[idQuestion]["reply2"],
-          questions[idQuestion]["goodReply"],
-          player2,
-          player1
-        );
-      });
-      oxo.inputs.listenKey("o", function() {
-        console.log("touche o");
-        checkReply(
-          questions[idQuestion]["reply3"],
-          questions[idQuestion]["goodReply"],
-          player2,
-          player1
-        );
-      });
-      oxo.inputs.listenKey("p", function() {
-        console.log("touche p");
-        checkReply(
-          questions[idQuestion]["reply4"],
-          questions[idQuestion]["goodReply"],
-          player2,
-          player1
-        );
-      });
+        oxo.inputs.listenKey("u", function() {
+          console.log("touche u");
+          checkReply(
+            questions[idQuestion]["reply1"],
+            questions[idQuestion]["goodReply"],
+            player2,
+            player1
+          );
+        });
+        oxo.inputs.listenKey("i", function() {
+          console.log("touche i");
+          checkReply(
+            questions[idQuestion]["reply2"],
+            questions[idQuestion]["goodReply"],
+            player2,
+            player1
+          );
+        });
+        oxo.inputs.listenKey("o", function() {
+          console.log("touche o");
+          checkReply(
+            questions[idQuestion]["reply3"],
+            questions[idQuestion]["goodReply"],
+            player2,
+            player1
+          );
+        });
+        oxo.inputs.listenKey("p", function() {
+          console.log("touche p");
+          checkReply(
+            questions[idQuestion]["reply4"],
+            questions[idQuestion]["goodReply"],
+            player2,
+            player1
+          );
+        });
+      }
     });
   });
 }

@@ -443,7 +443,7 @@ window.oxo = {
      */
     cancelKeysListeners(keys) {
       keys.forEach(function(key) {
-        oxo.inputs.cancelKeysListener(key);
+        oxo.inputs.cancelKeyListener(key);
       });
     },
 
@@ -565,6 +565,7 @@ window.oxo = {
             oxo.log('Load screen ' + name);
             oxo.player.refreshScore();
             oxo.animation.getMovableElement();
+            oxo.screens.currentScreen = name;
 
             if (action) {
               action.call();
