@@ -1,3 +1,18 @@
+.blackScreen {
+  position: absolute;
+  top: 0;
+  left:0;
+  height: 100vh;
+  width: 200%;
+  background-color: black;
+  transform: translateX(-200vw);
+  transition: transform 1.5s;
+
+  &.is-changed{
+    transform: translate(200vw);
+  }
+}
+
 .question {
   position: relative;
   height: 100vh;
