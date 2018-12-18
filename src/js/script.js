@@ -4,11 +4,11 @@ startGame();
 //Si pression sur space afficher game.html
 function startGame() {
   var oldQuestions = [];
-  oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
+  oxo.inputs.cancelKeysListeners(["a", "z", "e", "r", "u", "i", "o", "p"]);
 
   oxo.inputs.listenKeyOnce("space", function() {
     oxo.screens.loadScreen("game", function() {
-      oxo.inputs.cancelKeyListener('space');
+      oxo.inputs.cancelKeyListener("space");
       //object joueur1 et 2
       var player1 = { name: "player 1", score: 0 };
       var player2 = { name: "player 2", score: 0 };
@@ -222,33 +222,50 @@ function startGame() {
       function checkRand() {
         if (oldQuestions.length == 10) {
           oldQuestions = [];
-          oxo.screens.loadScreen("end", function() {
-            oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-            var endScorePlayer1 = document.getElementById("endScore__player1");
-            var endScorePlayer2 = document.getElementById("endScore__player2");
-            var homeReturn = document.getElementById("home__return");
+          setTimeout(function() {
+            oxo.screens.loadScreen("end", function() {
+              var endMusic = document.getElementById("endSound");
+              endMusic.play();
+              oxo.inputs.cancelKeysListeners([
+                "a",
+                "z",
+                "e",
+                "r",
+                "u",
+                "i",
+                "o",
+                "p"
+              ]);
+              var endScorePlayer1 = document.getElementById(
+                "endScore__player1"
+              );
+              var endScorePlayer2 = document.getElementById(
+                "endScore__player2"
+              );
+              var homeReturn = document.getElementById("home__return");
 
-            var resultplayer1 = document.getElementById("result__player1");
-            var resultplayer2 = document.getElementById("result__player2");
+              var resultplayer1 = document.getElementById("result__player1");
+              var resultplayer2 = document.getElementById("result__player2");
 
-            var blackScreen = document.getElementById("blackScreen");
+              var blackScreen = document.getElementById("blackScreen");
 
-            if (player1["score"] > player2["score"]) {
-              resultplayer1.innerHTML = "GEEKMASTER!";
-              resultplayer2.innerHTML = "NOOB...";
-            } else {
-              resultplayer1.innerHTML = "NOOB...";
-              resultplayer2.innerHTML = "GEEKMASTER!";
-            }
+              if (player1["score"] > player2["score"]) {
+                resultplayer1.innerHTML = "GEEKMASTER!";
+                resultplayer2.innerHTML = "NOOB...";
+              } else {
+                resultplayer1.innerHTML = "NOOB...";
+                resultplayer2.innerHTML = "GEEKMASTER!";
+              }
 
-            endScorePlayer1.innerHTML = player1["score"] + " pts";
-            endScorePlayer2.innerHTML = player2["score"] + " pts";
+              endScorePlayer1.innerHTML = player1["score"] + " pts";
+              endScorePlayer2.innerHTML = player2["score"] + " pts";
 
-            homeReturn.addEventListener("click", function() {
-              oxo.screens.loadScreen("home", function() {});
-              startGame();
+              homeReturn.addEventListener("click", function() {
+                oxo.screens.loadScreen("home", function() {});
+                startGame();
+              });
             });
-          });
+          }, 500);
         } else {
           do {
             //recupere un nombre aleatoire entre 0 et la longeur du tableau
@@ -303,29 +320,27 @@ function startGame() {
         if (reply === goodReply) {
           //le joueur gagne 1 point
           player["score"] = player["score"] + 100;
-          
+
           // je change d'evenement
-          idQuestion = changeEvent(); 
-          
+          idQuestion = changeEvent();
+
           /*console.log(
             "score: joueur 1:",
             player1["score"],
             "joueur 2:",
             player2["score"]
           );*/
-          
         } else {
           // si le jouueur se trompe sont l'autre joueur gagne 1 point
           opponent["score"] = opponent["score"] + 100;
           idQuestion = changeEvent();
-          
+
           /*console.log(
             "score: joueur 1:",
             player1["score"],
             "joueur 2:",
             player2["score"]
           );*/
-          
         }
         changeScore();
       }
@@ -339,126 +354,212 @@ function startGame() {
       //changement d'evenement
       var idQuestion = changeEvent();
 
-      if ( oxo.screens.currentScreen === 'game' ) {
-
-        function activateKey(){
+      if (oxo.screens.currentScreen === "game") {
+        function activateKey() {
           //si le joueur 1 clique sur a
-        oxo.inputs.listenKey("a", function() {
-          console.log("touche a");
-          console.log(oxo.screens.currentScreen);
-          // je verifie ca reponse
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply1"],
-              questions[idQuestion]["goodReply"],
-              player1,
-              player2
-            );
-            
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
-        oxo.inputs.listenKey("z", function() {
-          console.log("touche z");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply2"],
-              questions[idQuestion]["goodReply"],
-              player1,
-              player2
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
-        oxo.inputs.listenKey("e", function() {
-          console.log("touche e");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply3"],
-              questions[idQuestion]["goodReply"],
-              player1,
-              player2
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
-        oxo.inputs.listenKey("r", function() {
-          console.log("touche r");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply4"],
-              questions[idQuestion]["goodReply"],
-              player1,
-              player2
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
+          oxo.inputs.listenKey("a", function() {
+            console.log("touche a");
+            console.log(oxo.screens.currentScreen);
+            // je verifie ca reponse
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply1"],
+                questions[idQuestion]["goodReply"],
+                player1,
+                player2
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
+          oxo.inputs.listenKey("z", function() {
+            console.log("touche z");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply2"],
+                questions[idQuestion]["goodReply"],
+                player1,
+                player2
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
+          oxo.inputs.listenKey("e", function() {
+            console.log("touche e");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply3"],
+                questions[idQuestion]["goodReply"],
+                player1,
+                player2
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
+          oxo.inputs.listenKey("r", function() {
+            console.log("touche r");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply4"],
+                questions[idQuestion]["goodReply"],
+                player1,
+                player2
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
 
-        oxo.inputs.listenKey("u", function() {
-          console.log("touche u");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply1"],
-              questions[idQuestion]["goodReply"],
-              player2,
-              player1
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
-        oxo.inputs.listenKey("i", function() {
-          console.log("touche i");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply2"],
-              questions[idQuestion]["goodReply"],
-              player2,
-              player1
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
-        oxo.inputs.listenKey("o", function() {
-          console.log("touche o");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply3"],
-              questions[idQuestion]["goodReply"],
-              player2,
-              player1
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
-        oxo.inputs.listenKey("p", function() {
-          console.log("touche p");
-          oxo.inputs.cancelKeysListeners(['a', 'z','e','r','u','i','o','p']);
-          blackScreen.classList.toggle('is-changed');
-          setTimeout(function() {
-            checkReply(
-              questions[idQuestion]["reply4"],
-              questions[idQuestion]["goodReply"],
-              player2,
-              player1
-            );
-          }, 450);
-          setTimeout(function(){activateKey();},1350);
-        });
+          oxo.inputs.listenKey("u", function() {
+            console.log("touche u");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply1"],
+                questions[idQuestion]["goodReply"],
+                player2,
+                player1
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
+          oxo.inputs.listenKey("i", function() {
+            console.log("touche i");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply2"],
+                questions[idQuestion]["goodReply"],
+                player2,
+                player1
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
+          oxo.inputs.listenKey("o", function() {
+            console.log("touche o");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply3"],
+                questions[idQuestion]["goodReply"],
+                player2,
+                player1
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
+          oxo.inputs.listenKey("p", function() {
+            console.log("touche p");
+            oxo.inputs.cancelKeysListeners([
+              "a",
+              "z",
+              "e",
+              "r",
+              "u",
+              "i",
+              "o",
+              "p"
+            ]);
+            blackScreen.classList.toggle("is-changed");
+            setTimeout(function() {
+              checkReply(
+                questions[idQuestion]["reply4"],
+                questions[idQuestion]["goodReply"],
+                player2,
+                player1
+              );
+            }, 450);
+            setTimeout(function() {
+              activateKey();
+            }, 1350);
+          });
         }
         activateKey();
       }
