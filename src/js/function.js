@@ -20,13 +20,13 @@ function checkRand() {
     });
   } else {
     do {
-      //recupere un nombre aleatoire entre 0 et la longeur du tableau
+      //récupère un nombre aléatoire entre 0 et la longeur du tableau
       var randQuestion = Math.floor(
         Math.random() * (questions.length - 0) + 0
       );
-      //si le nombre aleatoire generer se trouver pas dans le tableau
+      //si le nombre aléatoire généré ne se trouve pas dans le tableau
       if (oldQuestions.indexOf(randQuestion) == -1) {
-        //je retourne le nombre aleatoire
+        //je retourne le nombre aléatoire
         return randQuestion;
       } else {
         result = -1;

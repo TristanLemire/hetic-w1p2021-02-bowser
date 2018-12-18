@@ -1,19 +1,26 @@
-//tableau des questions deja poser
+//tableau des questions deja posées
 
 startGame();
+
 //Si pression sur space afficher game.html
 function startGame() {
   var oldQuestions = [];
   oxo.inputs.cancelKeysListeners(["a", "z", "e", "r", "u", "i", "o", "p"]);
-
   oxo.inputs.listenKeyOnce("space", function() {
+    var menuSound = document.getElementById('menuSound');
+    menuSound.pause();
+    var clickMusic = document.getElementById("clickSound");
+    clickMusic.play();
+    setTimeout(function(){
     oxo.screens.loadScreen("game", function() {
+      var gameSound = document.getElementById("gameSound");
+      gameSound.play();
       oxo.inputs.cancelKeyListener("space");
       //object joueur1 et 2
       var player1 = { name: "player 1", score: 0 };
       var player2 = { name: "player 2", score: 0 };
 
-      //recuperation des elements de l'html
+      //récupération des éléments de l'html
       var questionHTML = document.getElementById("question__question");
       var reply1 = document.getElementById("question__reply1");
       var reply2 = document.getElementById("question__reply2");
@@ -22,7 +29,7 @@ function startGame() {
       var player1score = document.getElementById("player1__score");
       var player2score = document.getElementById("player2__score");
 
-      //Base de données des Quéstions.
+      //Base de données des questions.
       var questions = [
         {
           question: "Qui est le père de Luck Skywalker ? ",
@@ -216,11 +223,11 @@ function startGame() {
       player2score.innerHTML = 0;
 
       /*----------------------------------function checkRand----------------------------------*/
-      //function qui verifie si une question a deja ete poser
+      //function qui vérifie si une question a déjà été posée
 
       console.log(oldQuestions.length);
       function checkRand() {
-        if (oldQuestions.length == 10) {
+        if (oldQuestions.length == 11) {
           oldQuestions = [];
           setTimeout(function() {
             oxo.screens.loadScreen("end", function() {
@@ -268,13 +275,13 @@ function startGame() {
           }, 500);
         } else {
           do {
-            //recupere un nombre aleatoire entre 0 et la longeur du tableau
+            //récupérer un nombre aléatoire entre 0 et la longueur du tableau
             var randQuestion = Math.floor(
               Math.random() * (questions.length - 0) + 0
             );
-            //si le nombre aleatoire generer se trouver pas dans le tableau
+            //si le nombre aléatoire généré ne se trouve pas dans le tableau
             if (oldQuestions.indexOf(randQuestion) == -1) {
-              //je retourne le nombre aleatoire
+              //je retourne le nombre aléatoire
               return randQuestion;
             } else {
               result = -1;
@@ -285,9 +292,9 @@ function startGame() {
 
       /*----------------------------------function changeEvent----------------------------------*/
       function changeEvent() {
-        // Création d'un nombre aléatoire pour le choix de l'evenement.
+        // Création d'un nombre aléatoire pour le choix de l'évènement.
         var randEvent = Math.floor(Math.random() * (10 - 1) + 1);
-        // Si randEvent et superieur ou egale a 8 je lance un minijeux.
+        // Si randEvent et supérieur ou égale à 8 je lance un minijeux.
         if (randEvent >= 700) {
           //affichage
           questionHTML.innerHTML = "MINI JEUX";
@@ -300,7 +307,7 @@ function startGame() {
         } else {
           // Création d'un nombre aléatoire pour le choix des question.
           randQuestion = checkRand();
-          //je push le nombre aleatoire dans le talbeau des questions deja poser
+          //je push le nombre aléatoire dans le tableau des questions déjà posées
           oldQuestions.push(randQuestion);
           console.log(oldQuestions.length);
           //affichage
@@ -316,12 +323,12 @@ function startGame() {
       /*----------------------------------function checkReply----------------------------------*/
       //function qui verifier les reponse
       function checkReply(reply, goodReply, player, opponent) {
-        //si la reponser et egale a la reponse attendu
+        //si la réponse et égale à la réponse attendue
         if (reply === goodReply) {
           //le joueur gagne 1 point
           player["score"] = player["score"] + 100;
 
-          // je change d'evenement
+          // je change d'évènement
           idQuestion = changeEvent();
 
           /*console.log(
@@ -331,7 +338,7 @@ function startGame() {
             player2["score"]
           );*/
         } else {
-          // si le jouueur se trompe sont l'autre joueur gagne 1 point
+          // si le joueur se trompe, l'autre joueur gagne 1 point
           opponent["score"] = opponent["score"] + 100;
           idQuestion = changeEvent();
 
@@ -351,7 +358,7 @@ function startGame() {
         player2score.innerHTML = player2["score"] + " pts";
       }
 
-      //changement d'evenement
+      //changement d'évènement
       var idQuestion = changeEvent();
 
       if (oxo.screens.currentScreen === "game") {
@@ -360,7 +367,7 @@ function startGame() {
           oxo.inputs.listenKey("a", function() {
             console.log("touche a");
             console.log(oxo.screens.currentScreen);
-            // je verifie ca reponse
+            // je vérifie sa réponse
             oxo.inputs.cancelKeysListeners([
               "a",
               "z",
@@ -564,6 +571,7 @@ function startGame() {
         activateKey();
       }
     });
+  },500);
   });
 }
 
