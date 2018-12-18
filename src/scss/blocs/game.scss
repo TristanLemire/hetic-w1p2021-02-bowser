@@ -8,6 +8,15 @@
   align-items: center;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
+  
+  .question__score {
+    position: absolute;
+    top: 100px;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+
 
   .question__reply {
     margin-top: 50px;
