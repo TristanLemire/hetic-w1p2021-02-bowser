@@ -1,0 +1,24 @@
+.question {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+
+  .question__reply {
+    margin-top: 50px;
+    .reply--block {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 50px; 
+
+      .reply__one {
+        margin-right: 100px;
+      }
+    }
+  }
+}

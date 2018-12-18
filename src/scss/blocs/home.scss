@@ -1,0 +1,36 @@
+.home {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+
+  .home__playerTouche {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-bottom: 6vh;
+  }
+  
+  .home__gameStart {
+    margin-bottom: 6vh;
+  }
+
+  .home__tuto {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    cursor: pointer;
+  }
+
+  .home__logo{
+    width: 50%;
+    margin-bottom: 10vh;
+  }
+
+
+}
