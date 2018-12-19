@@ -1,5 +1,4 @@
 //tableau des questions deja posées
-
 startGame();
 
 //Si pression sur space afficher game.html
@@ -32,7 +31,7 @@ function startGame() {
       //Base de données des questions.
       var questions = [
         {
-          question: "Qui est le père de Skywalker ? ",
+          question: "Qui est le père de Luck Skywalker ? ",
           reply1: "Dark Vador",
           reply2: "Jar Jar",
           reply3: "Obi-Wan",
