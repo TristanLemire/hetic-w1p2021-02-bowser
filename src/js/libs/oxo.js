@@ -600,7 +600,7 @@ window.oxo = {
    * A function that will be run when oxo is called in order to init the game
    */
   init() {
-    oxo.screens.loadScreen('home');
+    oxo.screens.loadScreen('start');
     oxo.inputs.listenAllKeys();
     oxo.player.setScore(0);
   },
