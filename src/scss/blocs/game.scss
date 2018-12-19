@@ -145,3 +145,37 @@
     height: 22vh;
   }
 }
+
+.minigame__bloc {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 60vh;
+  width: 90%;
+  font-family: "Press Start 2P", cursive;
+  color: #fff;
+  text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000,
+  0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000,
+  -1px 1px 0 #000000;
+  font-size: 40px;
+  justify-content: space-around;
+  align-items: center;
+
+  div {
+    text-align: center;
+
+    h3,h2 {
+      margin-bottom: 40px;
+    }
+
+    p{
+
+      animation: glitch-1 2s infinite linear;
+    }
+  }
+
+
+}
+

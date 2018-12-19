@@ -68,6 +68,7 @@ function startGame() {
         var questionBloc = document.getElementById("question__bloc");
         var flash = document.getElementById("flash");
         var superman = document.getElementById("superman");
+        var minigameBloc =document.getElementById('minigame__bloc');
 
         //Base de données des questions.
         var questions = [
@@ -339,10 +340,10 @@ function startGame() {
           // Création d'un nombre aléatoire pour le choix de l'évènement.
           var randEvent = Math.floor(Math.random() * (10 - 1) + 1);
           // Si randEvent et supérieur ou égale à 8 je lance un minijeux.
-          if (randEvent >= 9) {
+          if (randEvent >= 8) {
             //affichage
             randQuestion = -1;
-            questionHTML.innerHTML = "MINI JEUX";
+            questionHTML.innerHTML = "";
             reply1.innerHTML = "";
             reply2.innerHTML = "";
             reply3.innerHTML = "";
@@ -357,11 +358,13 @@ function startGame() {
             superman.style.display= "block";
             flash.style.display= "block";
             console.log("ploppllp", question.className);
+            minigameBloc.style.display = 'flex';
             //sinon je lance un question
           } else {
             superman.style.display= "none";
             flash.style.display= "none";
             questionBloc.style.display = "flex";
+            minigameBloc.style.display = 'none';
             // Création d'un nombre aléatoire pour le choix des question.
             randQuestion = checkRand();
             //je push le nombre aléatoire dans le tableau des questions déjà posées
