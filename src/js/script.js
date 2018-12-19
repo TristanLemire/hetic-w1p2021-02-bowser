@@ -339,7 +339,7 @@ function startGame() {
           // Création d'un nombre aléatoire pour le choix de l'évènement.
           var randEvent = Math.floor(Math.random() * (10 - 1) + 1);
           // Si randEvent et supérieur ou égale à 8 je lance un minijeux.
-          if (randEvent >= 7) {
+          if (randEvent >= 9) {
             //affichage
             randQuestion = -1;
             questionHTML.innerHTML = "MINI JEUX";
