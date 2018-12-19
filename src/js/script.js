@@ -1,6 +1,6 @@
 //tableau des questions deja posées
 oxo.screens.loadScreen("start", function() {
-  oxo.inputs.cancelKeyListener("space");
+  oxo.inputs.cancelKeysListeners(["space", "s", "l"]);
   var bowserLogo = document.getElementById("bowser__logo");
   var heticLogo = document.getElementById("hetic__logo");
   setTimeout(function() {
@@ -8,29 +8,38 @@ oxo.screens.loadScreen("start", function() {
 
     setTimeout(function() {
       heticLogo.classList.add("is-visible");
-      setTimeout(function(){
-      heticLogo.classList.remove("is-visible");
-    },3000);
+      setTimeout(function() {
+        heticLogo.classList.remove("is-visible");
+      }, 3000);
     }, 1000);
   }, 3000);
-  setTimeout(function(){
+  setTimeout(function() {
     oxo.screens.loadScreen("home", function() {
       startGame();
-
     });
-  },8000);
+  }, 8000);
 });
-
 
 //Si pression sur space afficher game.html
 function startGame() {
-   var buttonTuto = document.getElementById('button__tuto');
-  buttonTuto.addEventListener('click',function(){
-    var tutoSection = document.getElementById('tuto__section');
-    tutoSection.classList.toggle('is-visible');
+  var buttonTuto = document.getElementById("button__tuto");
+  buttonTuto.addEventListener("click", function() {
+    var tutoSection = document.getElementById("tuto__section");
+    tutoSection.classList.toggle("is-visible");
   });
   var oldQuestions = [];
-  oxo.inputs.cancelKeysListeners(["a", "z", "e", "r", "u", "i", "o", "p"]);
+  oxo.inputs.cancelKeysListeners([
+    "a",
+    "z",
+    "e",
+    "r",
+    "u",
+    "i",
+    "o",
+    "p",
+    "s",
+    "l"
+  ]);
   oxo.inputs.listenKeyOnce("space", function() {
     var menuSound = document.getElementById("menuSound");
     menuSound.pause();
@@ -40,7 +49,7 @@ function startGame() {
       oxo.screens.loadScreen("game", function() {
         var gameSound = document.getElementById("gameSound");
         gameSound.play();
-        oxo.inputs.cancelKeyListener("space");
+        oxo.inputs.cancelKeysListeners(["space", "s", "l"]);
         //object joueur1 et 2
         var player1 = { name: "player 1", score: 0 };
         var player2 = { name: "player 2", score: 0 };
@@ -53,9 +62,12 @@ function startGame() {
         var reply4 = document.getElementById("question__reply4");
         var player1score = document.getElementById("player1__score");
         var player2score = document.getElementById("player2__score");
-        var question = document.getElementById('question');
-        var failSound = document.getElementById('failSound');
-        var winSound = document.getElementById('winSound');
+        var question = document.getElementById("question");
+        var failSound = document.getElementById("failSound");
+        var winSound = document.getElementById("winSound");
+        var questionBloc = document.getElementById("question__bloc");
+        var flash = document.getElementById("flash");
+        var superman = document.getElementById("superman");
 
         //Base de données des questions.
         var questions = [
@@ -66,7 +78,7 @@ function startGame() {
             reply3: "Obi-Wan",
             reply4: "Anakin Skywalker",
             goodReply: "Anakin Skywalker",
-            className: 'movie'
+            className: "movie"
           },
           {
             question: "A quel moment un magicien arrive-t-il ?",
@@ -75,7 +87,7 @@ function startGame() {
             reply3: "à l'heure prévue",
             reply4: "Obi-Wan Kenobi",
             goodReply: "à l'heure prévue",
-            className: 'fantasy'
+            className: "fantasy"
           },
           {
             question: "Que contient le baguette d'Harry Potter ?",
@@ -84,7 +96,7 @@ function startGame() {
             reply3: "une corne de licorne",
             reply4: "une griffe de griffon",
             goodReply: "une plume de phéonix",
-            className: 'fantasy'
+            className: "fantasy"
           },
           {
             question: "Quel est le nom d'origine de Mario ?",
@@ -93,7 +105,7 @@ function startGame() {
             reply3: "Redman",
             reply4: "Luigi",
             goodReply: "Jumpman",
-            className: 'videogame'
+            className: "videogame"
           },
           {
             question: "Que signifient les initiales de J.R.R. Tolkien ?",
@@ -102,7 +114,7 @@ function startGame() {
             reply3: "John Ronald Reuel",
             reply4: "Jack Rory Reed",
             goodReply: "John Ronald Reuel",
-            className: 'fantasy'
+            className: "fantasy"
           },
           {
             question: "Quel est le jeu le plus vendu de l'histoire ?",
@@ -111,7 +123,7 @@ function startGame() {
             reply3: "Tetris",
             reply4: "Minecraft",
             goodReply: "Tetris",
-            className: 'videogame'
+            className: "videogame"
           },
           {
             question:
@@ -121,7 +133,7 @@ function startGame() {
             reply3: "Oracle of ages",
             reply4: "A link to Past",
             goodReply: "Ocarina of time",
-            className: 'videogame'
+            className: "videogame"
           },
           {
             question: "Quel est le nom de famille de Samus de Metroid ?",
@@ -130,7 +142,7 @@ function startGame() {
             reply3: "Aran",
             reply4: "Keith",
             goodReply: "Aran",
-            className: 'videogame'
+            className: "videogame"
           },
           {
             question:
@@ -140,7 +152,7 @@ function startGame() {
             reply3: "Bender",
             reply4: "Wall-E",
             goodReply: "Robocop",
-            className: 'sf'
+            className: "sf"
           },
           {
             question: "A l'envers je parle, sages sont mes mots, qui suis-je ?",
@@ -149,7 +161,7 @@ function startGame() {
             reply3: "Yoda",
             reply4: "Albus Dumbledore",
             goodReply: "Yoda",
-            className: 'movie'
+            className: "movie"
           },
           {
             question:
@@ -159,7 +171,7 @@ function startGame() {
             reply3: "Hulk",
             reply4: "Thor",
             goodReply: "Thor",
-            className: 'comics'
+            className: "comics"
           },
           {
             question:
@@ -169,7 +181,7 @@ function startGame() {
             reply3: "Michonne",
             reply4: "Carl",
             goodReply: "Michonne",
-            className: 'comics'
+            className: "comics"
           },
           {
             question: "Dans quel film Bill Murray extermine des ectoplasmes ?",
@@ -178,7 +190,7 @@ function startGame() {
             reply3: "Fantômes en fête",
             reply4: "Space Jam",
             goodReply: "Ghostbusters - SOS Fantômes",
-            className: 'movie'
+            className: "movie"
           },
           {
             question:
@@ -188,7 +200,7 @@ function startGame() {
             reply3: "88km/heure",
             reply4: "299 792 458 m/s",
             goodReply: "88 miles/heure",
-            className: 'sf'
+            className: "sf"
           },
           {
             question: "Quelle est la boisson préférée du Dude ?",
@@ -197,7 +209,7 @@ function startGame() {
             reply3: "Bloody Mary",
             reply4: "Irish Coffee",
             goodReply: "White Russian",
-            className: 'movie'
+            className: "movie"
           },
           {
             question: " Qui est l'auteur du Necronomicon ?",
@@ -206,7 +218,7 @@ function startGame() {
             reply3: "I.Ron Hubbard",
             reply4: "J.K. Rowling",
             goodReply: "H.P.Lovecraft",
-            className: 'fantasy'
+            className: "fantasy"
           },
           {
             question: "Dans quelle ville se passe la série Breaking Bad ?",
@@ -215,7 +227,7 @@ function startGame() {
             reply3: "Minneapolis",
             reply4: "Gotham city",
             goodReply: "Baltimore",
-            className: 'movie'
+            className: "movie"
           },
           {
             question:
@@ -225,7 +237,7 @@ function startGame() {
             reply3: "Superman",
             reply4: "Spiderman",
             goodReply: "Oncle Ben",
-            className: 'comics'
+            className: "comics"
           },
           {
             question:
@@ -235,7 +247,7 @@ function startGame() {
             reply3: "Violet",
             reply4: "Marron",
             goodReply: "Violet",
-            className: 'movie'
+            className: "movie"
           },
           {
             question: "Quel est le célèbre couple de détective du paranormal ?",
@@ -244,7 +256,7 @@ function startGame() {
             reply3: "Rick Castle et Kate Beckett",
             reply4: "Minus et Cortex",
             goodReply: "Mulder et Scully",
-            className: 'sf'
+            className: "sf"
           }
         ];
 
@@ -287,12 +299,12 @@ function startGame() {
 
                 if (player1["score"] > player2["score"]) {
                   resultplayer1.innerHTML = "GEEKMASTER!";
-                  resultplayer1.classList.add('is-winner');
+                  resultplayer1.classList.add("is-winner");
                   resultplayer2.innerHTML = "NOOB...";
                 } else {
                   resultplayer1.innerHTML = "NOOB...";
                   resultplayer2.innerHTML = "GEEKMASTER!";
-                  resultplayer2.classList.add('is-winner');
+                  resultplayer2.classList.add("is-winner");
                 }
 
                 endScorePlayer1.innerHTML = player1["score"] + " pts";
@@ -302,7 +314,6 @@ function startGame() {
                   oxo.screens.loadScreen("home", function() {
                     startGame();
                   });
-                  
                 });
               });
             }, 500);
@@ -328,60 +339,78 @@ function startGame() {
           // Création d'un nombre aléatoire pour le choix de l'évènement.
           var randEvent = Math.floor(Math.random() * (10 - 1) + 1);
           // Si randEvent et supérieur ou égale à 8 je lance un minijeux.
-          if (randEvent >= 700) {
+          if (randEvent >= 7) {
             //affichage
+            randQuestion = -1;
             questionHTML.innerHTML = "MINI JEUX";
             reply1.innerHTML = "";
             reply2.innerHTML = "";
             reply3.innerHTML = "";
             reply4.innerHTML = "";
-
+            questionBloc.style.display = "none";
+            question.classList.remove("add-comics");
+            question.classList.remove("add-sf");
+            question.classList.remove("add-videogame");
+            question.classList.remove("add-fantasy");
+            question.classList.remove("add-movie");
+            question.classList.add("add-minigame");
+            superman.style.display= "block";
+            flash.style.display= "block";
+            console.log("ploppllp", question.className);
             //sinon je lance un question
           } else {
+            superman.style.display= "none";
+            flash.style.display= "none";
+            questionBloc.style.display = "flex";
             // Création d'un nombre aléatoire pour le choix des question.
             randQuestion = checkRand();
             //je push le nombre aléatoire dans le tableau des questions déjà posées
             oldQuestions.push(randQuestion);
             console.log(oldQuestions.length);
             //affichage
-            if(questions[randQuestion]["className"] == 'comics'){
-              question.classList.add('add-comics');
-              question.classList.remove('add-sf');
-              question.classList.remove('add-videogame');
-              question.classList.remove('add-fantasy');
-              question.classList.remove('add-movie');
-            } else if(questions[randQuestion]["className"] == 'sf') {
-              question.classList.remove('add-comics');
-              question.classList.add('add-sf');
-              question.classList.remove('add-videogame');
-              question.classList.remove('add-fantasy');
-              question.classList.remove('add-movie');
-            } else if(questions[randQuestion]["className"] == 'videogame') {
-              question.classList.remove('add-comics');
-              question.classList.remove('add-sf');
-              question.classList.add('add-videogame');
-              question.classList.remove('add-fantasy');
-              question.classList.remove('add-movie');
-            } else if(questions[randQuestion]["className"] == 'fantasy') {
-              question.classList.remove('add-comics');
-              question.classList.remove('add-sf');
-              question.classList.remove('add-videogame');
-              question.classList.add('add-fantasy');
-              question.classList.remove('add-movie');
-            } else if(questions[randQuestion]["className"] == 'movie'){
-              question.classList.remove('add-comics');
-              question.classList.remove('add-sf');
-              question.classList.remove('add-videogame');
-              question.classList.remove('add-fantasy');
-              question.classList.add('add-movie');
+            if (questions[randQuestion]["className"] == "comics") {
+              question.classList.add("add-comics");
+              question.classList.remove("add-sf");
+              question.classList.remove("add-videogame");
+              question.classList.remove("add-fantasy");
+              question.classList.remove("add-movie");
+              question.classList.remove("add-minigame");
+            } else if (questions[randQuestion]["className"] == "sf") {
+              question.classList.remove("add-comics");
+              question.classList.add("add-sf");
+              question.classList.remove("add-videogame");
+              question.classList.remove("add-fantasy");
+              question.classList.remove("add-movie");
+              question.classList.remove("add-minigame");
+            } else if (questions[randQuestion]["className"] == "videogame") {
+              question.classList.remove("add-comics");
+              question.classList.remove("add-sf");
+              question.classList.add("add-videogame");
+              question.classList.remove("add-fantasy");
+              question.classList.remove("add-movie");
+              question.classList.remove("add-minigame");
+            } else if (questions[randQuestion]["className"] == "fantasy") {
+              question.classList.remove("add-comics");
+              question.classList.remove("add-sf");
+              question.classList.remove("add-videogame");
+              question.classList.add("add-fantasy");
+              question.classList.remove("add-movie");
+              question.classList.remove("add-minigame");
+            } else if (questions[randQuestion]["className"] == "movie") {
+              question.classList.remove("add-comics");
+              question.classList.remove("add-sf");
+              question.classList.remove("add-videogame");
+              question.classList.remove("add-fantasy");
+              question.classList.add("add-movie");
+              question.classList.remove("add-minigame");
             }
-            
+
             questionHTML.innerHTML = questions[randQuestion]["question"];
             reply1.innerHTML = questions[randQuestion]["reply1"];
             reply2.innerHTML = questions[randQuestion]["reply2"];
             reply3.innerHTML = questions[randQuestion]["reply3"];
             reply4.innerHTML = questions[randQuestion]["reply4"];
-
+            console.log("ploppllp", question.className);
           }
           return randQuestion;
         }
@@ -394,7 +423,7 @@ function startGame() {
             //le joueur gagne 1 point
             winSound.play();
             player["score"] = player["score"] + 100;
-            
+
             // je change d'évènement
             idQuestion = changeEvent();
 
@@ -409,7 +438,7 @@ function startGame() {
             opponent["score"] = opponent["score"] + 100;
             failSound.play();
             idQuestion = changeEvent();
-            
+
             /*console.log(
             "score: joueur 1:",
             player1["score"],
@@ -426,11 +455,42 @@ function startGame() {
           player2score.innerHTML = player2["score"] + " pts";
         }
 
+        function checkRun() {
+          if (countPlayer1 == 10) {
+            flash.style.left = 0;
+            superman.style.left = 0;
+            winSound.play();
+            player1["score"] = player1["score"] + 100;
+
+            idQuestion = changeEvent();
+          } else {
+            superman.style.left = 0;
+            flash.style.left = 0;
+            player2["score"] = player2["score"] + 100;
+            winSound.play();
+            idQuestion = changeEvent();
+          }
+          countPlayer1 = 0;
+          countPlayer2 = 0;
+          changeScore();
+        }
+
         //changement d'évènement
         var idQuestion = changeEvent();
+        var countPlayer1 = 0;
+        var countPlayer2 = 0;
+        var countMovePlayer1 = 0;
+        var countMovePlayer2 = 0;
 
-        if (oxo.screens.currentScreen === "game") {
-          function activateKey() {
+        console.log("ploppllp", idQuestion);
+
+        function activateKey() {
+          console.log("ploppllp", question.className);
+          if (
+            oxo.screens.currentScreen === "game" &&
+            question.className != "question add-minigame"
+          ) {
+            console.log("ploppllp", question.className);
             //si le joueur 1 clique sur a
             oxo.inputs.listenKey("a", function() {
               console.log("touche a");
@@ -635,9 +695,46 @@ function startGame() {
                 activateKey();
               }, 1350);
             });
+          } else {
+            oxo.inputs.listenKey("s", function() {
+              countMovePlayer1 = 130*(countPlayer1 + 1) + 'px';
+              console.log('plop42',countMovePlayer1);
+              flash.style.left = countMovePlayer1; 
+              console.log("touche s");
+              countPlayer1 = countPlayer1 + 1;
+              console.log("plop", countPlayer1);
+              if (countPlayer1 == 10) {
+                oxo.inputs.cancelKeysListeners(["s", "l"]);
+                blackScreen.classList.toggle("is-changed");
+                setTimeout(function() {
+                  checkRun();
+                }, 450);
+                setTimeout(function() {
+                  activateKey();
+                }, 1350);
+              }
+            });
+            oxo.inputs.listenKey("l", function() {
+              countMovePlayer2 = 130*(countPlayer2 + 1) + 'px';
+              console.log('plop42',countMovePlayer2);
+              superman.style.left = countMovePlayer2; 
+              console.log("touche l");
+              countPlayer2 = countPlayer2 + 1;
+              console.log("plop", countPlayer2);
+              if (countPlayer2 == 10) {
+                oxo.inputs.cancelKeysListeners(["s", "l"]);
+                blackScreen.classList.toggle("is-changed");
+                setTimeout(function() {
+                  checkRun();
+                }, 450);
+                setTimeout(function() {
+                  activateKey();
+                }, 1350);
+              }
+            });
           }
-          activateKey();
         }
+        activateKey();
       });
     }, 500);
   });

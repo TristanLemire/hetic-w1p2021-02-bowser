@@ -51,6 +51,11 @@
     background-size: cover;
   }
 
+  &.add-minigame {
+    background: url(../img/mini-jeux.png) no-repeat;
+    background-size: cover;
+  }
+
   .quiz__logo {
     position: absolute;
     top: 7vh;
@@ -121,5 +126,22 @@
         }
       }
     }
+  }
+
+  .flash {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 25vh;
+  }
+
+  .superman {
+    display: block;
+    position: absolute;
+    bottom: 15vh;
+    left: 0;
+    height: 22vh;
   }
 }
