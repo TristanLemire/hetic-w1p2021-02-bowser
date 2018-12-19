@@ -23,7 +23,7 @@ oxo.screens.loadScreen("start", function() {
 
 //Si pression sur space afficher game.html
 function startGame() {
-  var buttonTuto = document.getElementById('button__tuto');
+   var buttonTuto = document.getElementById('button__tuto');
   buttonTuto.addEventListener('click',function(){
     var tutoSection = document.getElementById('tuto__section');
     tutoSection.classList.toggle('is-visible');

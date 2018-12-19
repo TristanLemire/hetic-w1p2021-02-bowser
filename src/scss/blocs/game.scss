@@ -58,6 +58,8 @@
       display: flex;
       flex-wrap: wrap;
 
+      
+
     .reply {
       height: 20vh;
       width: 30vw;
@@ -67,6 +69,10 @@
       flex-direction: column;
       margin-top: 30px;
       margin-left: 30px;
+
+      &.reply--left{
+        margin-left: 90px;
+      }
 
       .reply__border{
         position: absolute;
