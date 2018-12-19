@@ -54,9 +54,10 @@
   .quiz__logo {
     position: absolute;
     top: 7vh;
-    left: 50%;
+    left: 30%;
     transform: translateX(-50%);
     height: 09vh;
+    animation: glitch-1 2s infinite linear;
   }
 
   .question__score {
@@ -81,6 +82,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .question__question {
+      font-size: 20px;
+    }
 
     .reply__bloc {
       width: 80%;

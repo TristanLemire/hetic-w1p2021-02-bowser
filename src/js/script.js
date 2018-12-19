@@ -72,9 +72,9 @@ function startGame() {
             question: "A quel moment un magicien arrive-t-il ?",
             reply1: "en retard",
             reply2: "en avance",
-            reply3: "précisemment à l'heure prévue",
+            reply3: "à l'heure prévue",
             reply4: "Obi-Wan Kenobi",
-            goodReply: "précisemment à l'heure prévue",
+            goodReply: "à l'heure prévue",
             className: 'fantasy'
           },
           {
