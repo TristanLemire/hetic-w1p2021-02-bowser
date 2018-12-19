@@ -31,8 +31,7 @@ function startGame() {
     clickMusic.play();
     setTimeout(function() {
       oxo.screens.loadScreen("game", function() {
-        var gameSound = document.getElementById("gameSound");
-        gameSound.play();
+        
         oxo.inputs.cancelKeyListener("space");
         //object joueur1 et 2
         var player1 = { name: "player 1", score: 0 };
