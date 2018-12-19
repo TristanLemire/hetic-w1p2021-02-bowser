@@ -11,6 +11,7 @@
   &.is-changed{
     transform: translate(200vw);
   }
+  z-index: 3;
 }
 
 .question {
@@ -23,7 +24,16 @@
   align-items: center;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
+  margin-top: 40px;
   
+  .quiz__logo{
+    position: absolute;
+    top: 7vh;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 09vh;
+  }
+
   .question__score {
     position: absolute;
     top: 100px;
@@ -32,17 +42,48 @@
     width: 80%;
   }
 
+  .question__bloc {
+    height: 60vh;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border: #fff double 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  .question__reply {
-    margin-top: 50px;
-    .reply--block {
+    .reply__bloc {
+      width: 80%;
       display: flex;
-      flex-direction: row;
-      margin-bottom: 50px; 
+      flex-wrap: wrap;
 
-      .reply__one {
-        margin-right: 100px;
+    .reply {
+      height: 20vh;
+      width: 30vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 30px;
+      margin-left: 30px;
+
+      .reply__border{
+        position: absolute;
+      }
+
+      .question__reply {
+        margin-bottom: 20px;
+      }
+
+      .reply__touch {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
       }
     }
+
+  }
+
   }
 }

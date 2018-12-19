@@ -1,22 +1,48 @@
-
 <audio src="../audio/game.mp3" id="gameSound"></audio>
-<section id="blackScreen" class="blackScreen">
-
-</section>
+<section id="blackScreen" class="blackScreen"></section>
 <section class="question">
+  <img src="../img/quiz-logo.png" alt="" class="quiz__logo">
   <div class="question__score">
     <p>player 1: <span id="player1__score"></span></p>
     <p>player 2: <span id="player2__score"></span></p>
   </div>
-  <h2 id="question__question"></h2>
-  <div class="question__reply">
-    <div class="reply--block">
-      <p class="reply__one" id="question__reply1"></p>
-      <p id="question__reply2"></p>
+  <div class="question__bloc">
+    <h2 id="question__question"></h2>
+    <div class="reply__bloc">
+        <div class="reply reply--left">
+          <img src="../img/border.png" alt="" class="reply__border">
+            <p class="question__reply" id="question__reply1"></p>
+            <div class="reply__touch">
+              <p>P1:A</p>
+              <p>P2:U</p>
+            </div>
+          </div>
+          <div class="reply">
+              <img src="../img/border.png" alt="" class="reply__border">
+            <p class="question__reply" id="question__reply2"></p>
+            <div class="reply__touch">
+                <p>P1:Z</p>
+                <p>P2:I</p>
+              </div>
+          </div>
+          <div class="reply">
+              <img src="../img/border.png" alt="" class="reply__border">
+            <p class="question__reply" id="question__reply3"></p>
+            <div class="reply__touch">
+                <p>P1:E</p>
+                <p>P2:O</p>
+            </div>
+          </div>
+          <div class="reply">
+              <img src="../img/border.png" alt="" class="reply__border">
+            <p class="question__reply" id="question__reply4"></p>
+            <div class="reply__touch">
+                <p>P1:R</p>
+                <p>P2:P</p>
+              </div>
+          </div>
     </div>
-    <div class="reply--block">
-      <p class="reply__one" id="question__reply3"></p>
-      <p id="question__reply4"></p>
+    
     </div>
   </div>
 </section>

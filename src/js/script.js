@@ -14,6 +14,7 @@ oxo.screens.loadScreen("start", function() {
   }, 3000);
   setTimeout(function(){
     oxo.screens.loadScreen("home", function() {
+     
       startGame();
     });
   },8000);
@@ -22,6 +23,11 @@ oxo.screens.loadScreen("start", function() {
 
 //Si pression sur space afficher game.html
 function startGame() {
+  var buttonTuto = document.getElementById('button__tuto');
+  buttonTuto.addEventListener('click',function(){
+    var tutoSection = document.getElementById('tuto__section');
+    tutoSection.classList.toggle('is-visible');
+  });
   var oldQuestions = [];
   oxo.inputs.cancelKeysListeners(["a", "z", "e", "r", "u", "i", "o", "p"]);
   oxo.inputs.listenKeyOnce("space", function() {
@@ -287,8 +293,10 @@ function startGame() {
                 endScorePlayer2.innerHTML = player2["score"] + " pts";
 
                 homeReturn.addEventListener("click", function() {
-                  oxo.screens.loadScreen("home", function() {});
-                  startGame();
+                  oxo.screens.loadScreen("home", function() {
+                    startGame();
+                  });
+                  
                 });
               });
             }, 500);
