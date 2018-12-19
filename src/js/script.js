@@ -1,5 +1,6 @@
 //tableau des questions deja posées
 oxo.screens.loadScreen("start", function() {
+  oxo.inputs.cancelKeyListener("space");
   var bowserLogo = document.getElementById("bowser__logo");
   var heticLogo = document.getElementById("hetic__logo");
   setTimeout(function() {
@@ -14,8 +15,8 @@ oxo.screens.loadScreen("start", function() {
   }, 3000);
   setTimeout(function(){
     oxo.screens.loadScreen("home", function() {
-     
       startGame();
+
     });
   },8000);
 });
@@ -52,6 +53,8 @@ function startGame() {
         var reply4 = document.getElementById("question__reply4");
         var player1score = document.getElementById("player1__score");
         var player2score = document.getElementById("player2__score");
+        var question = document.getElementById('question');
+
 
         //Base de données des questions.
         var questions = [
@@ -62,7 +65,7 @@ function startGame() {
             reply3: "Obi-Wan",
             reply4: "Anakin Skywalker",
             goodReply: "Anakin Skywalker",
-            className: "question--SwFather"
+            className: 'movie'
           },
           {
             question: "A quel moment un magicien arrive-t-il ?",
@@ -71,7 +74,7 @@ function startGame() {
             reply3: "précisemment à l'heure prévue",
             reply4: "Obi-Wan Kenobi",
             goodReply: "précisemment à l'heure prévue",
-            className: "question--wizard"
+            className: 'fantasy'
           },
           {
             question: "Que contient le baguette d'Harry Potter ?",
@@ -80,7 +83,7 @@ function startGame() {
             reply3: "une corne de licorne",
             reply4: "une griffe de griffon",
             goodReply: "une plume de phéonix",
-            className: "question--Hp"
+            className: 'fantasy'
           },
           {
             question: "Quel est le nom d'origine de Mario ?",
@@ -89,7 +92,7 @@ function startGame() {
             reply3: "Redman",
             reply4: "Luigi",
             goodReply: "Jumpman",
-            className: "question-mario"
+            className: 'videogame'
           },
           {
             question: "Que signifient les initiales de J.R.R. Tolkien ?",
@@ -98,7 +101,7 @@ function startGame() {
             reply3: "John Ronald Reuel",
             reply4: "Jack Rory Reed",
             goodReply: "John Ronald Reuel",
-            className: "question--tolkien"
+            className: 'fantasy'
           },
           {
             question: "Quel est le jeu le plus vendu de l'histoire ?",
@@ -107,7 +110,7 @@ function startGame() {
             reply3: "Tetris",
             reply4: "Minecraft",
             goodReply: "Tetris",
-            className: "question--tetris"
+            className: 'videogame'
           },
           {
             question:
@@ -117,7 +120,7 @@ function startGame() {
             reply3: "Oracle of ages",
             reply4: "A link to Past",
             goodReply: "Ocarina of time",
-            className: "question--zelda"
+            className: 'videogame'
           },
           {
             question: "Quel est le nom de famille de Samus de Metroid ?",
@@ -126,7 +129,7 @@ function startGame() {
             reply3: "Aran",
             reply4: "Keith",
             goodReply: "Aran",
-            className: "question--metroid"
+            className: 'videogame'
           },
           {
             question:
@@ -136,7 +139,7 @@ function startGame() {
             reply3: "Bender",
             reply4: "Wall-E",
             goodReply: "Robocop",
-            className: "question--robot"
+            className: 'sf'
           },
           {
             question: "A l'envers je parle, sages sont mes mots, qui suis-je ?",
@@ -145,7 +148,7 @@ function startGame() {
             reply3: "Yoda",
             reply4: "Albus Dumbledore",
             goodReply: "Yoda",
-            className: "question-yoda"
+            className: 'movie'
           },
           {
             question:
@@ -155,7 +158,7 @@ function startGame() {
             reply3: "Hulk",
             reply4: "Thor",
             goodReply: "Thor",
-            className: "question--godess"
+            className: 'comics'
           },
           {
             question:
@@ -165,16 +168,16 @@ function startGame() {
             reply3: "Michonne",
             reply4: "Carl",
             goodReply: "Michonne",
-            className: "question--katanas"
+            className: 'comics'
           },
           {
             question: "Dans quel film Bill Murray extermine des ectoplasmes ?",
             reply1: "Un jour sans fin",
-            reply2: "Ghostbusters - SOS Fantômes",
+            reply2: "Ghostbusters",
             reply3: "Fantômes en fête",
             reply4: "Space Jam",
             goodReply: "Ghostbusters - SOS Fantômes",
-            className: "question--ghost"
+            className: 'movie'
           },
           {
             question:
@@ -184,7 +187,7 @@ function startGame() {
             reply3: "88km/heure",
             reply4: "299 792 458 m/s",
             goodReply: "88 miles/heure",
-            className: "question--dolorean"
+            className: 'sf'
           },
           {
             question: "Quelle est la boisson préférée du Dude ?",
@@ -193,7 +196,7 @@ function startGame() {
             reply3: "Bloody Mary",
             reply4: "Irish Coffee",
             goodReply: "White Russian",
-            className: "question--dude"
+            className: 'movie'
           },
           {
             question: " Qui est l'auteur du Necronomicon ?",
@@ -202,7 +205,7 @@ function startGame() {
             reply3: "I.Ron Hubbard",
             reply4: "J.K. Rowling",
             goodReply: "H.P.Lovecraft",
-            className: "question--lovecraft"
+            className: 'fantasy'
           },
           {
             question: "Dans quelle ville se passe la série Breaking Bad ?",
@@ -211,7 +214,7 @@ function startGame() {
             reply3: "Minneapolis",
             reply4: "Gotham city",
             goodReply: "Baltimore",
-            className: "question--breaking"
+            className: 'movie'
           },
           {
             question:
@@ -221,7 +224,7 @@ function startGame() {
             reply3: "Superman",
             reply4: "Spiderman",
             goodReply: "Oncle Ben",
-            className: "question--power"
+            className: 'comics'
           },
           {
             question:
@@ -231,7 +234,7 @@ function startGame() {
             reply3: "Violet",
             reply4: "Marron",
             goodReply: "Violet",
-            className: "question--saber"
+            className: 'movie'
           },
           {
             question: "Quel est le célèbre couple de détective du paranormal ?",
@@ -240,7 +243,7 @@ function startGame() {
             reply3: "Rick Castle et Kate Beckett",
             reply4: "Minus et Cortex",
             goodReply: "Mulder et Scully",
-            className: "question--paranormal"
+            className: 'sf'
           }
         ];
 
@@ -338,11 +341,44 @@ function startGame() {
             oldQuestions.push(randQuestion);
             console.log(oldQuestions.length);
             //affichage
+            if(questions[randQuestion]["className"] == 'comics'){
+              question.classList.add('add-comics');
+              question.classList.remove('add-sf');
+              question.classList.remove('add-videogame');
+              question.classList.remove('add-fantasy');
+              question.classList.remove('add-movie');
+            } else if(questions[randQuestion]["className"] == 'sf') {
+              question.classList.remove('add-comics');
+              question.classList.add('add-sf');
+              question.classList.remove('add-videogame');
+              question.classList.remove('add-fantasy');
+              question.classList.remove('add-movie');
+            } else if(questions[randQuestion]["className"] == 'videogame') {
+              question.classList.remove('add-comics');
+              question.classList.remove('add-sf');
+              question.classList.add('add-videogame');
+              question.classList.remove('add-fantasy');
+              question.classList.remove('add-movie');
+            } else if(questions[randQuestion]["className"] == 'fantasy') {
+              question.classList.remove('add-comics');
+              question.classList.remove('add-sf');
+              question.classList.remove('add-videogame');
+              question.classList.add('add-fantasy');
+              question.classList.remove('add-movie');
+            } else if(questions[randQuestion]["className"] == 'movie'){
+              question.classList.remove('add-comics');
+              question.classList.remove('add-sf');
+              question.classList.remove('add-videogame');
+              question.classList.remove('add-fantasy');
+              question.classList.add('add-movie');
+            }
+            
             questionHTML.innerHTML = questions[randQuestion]["question"];
             reply1.innerHTML = questions[randQuestion]["reply1"];
             reply2.innerHTML = questions[randQuestion]["reply2"];
             reply3.innerHTML = questions[randQuestion]["reply3"];
             reply4.innerHTML = questions[randQuestion]["reply4"];
+
           }
           return randQuestion;
         }
