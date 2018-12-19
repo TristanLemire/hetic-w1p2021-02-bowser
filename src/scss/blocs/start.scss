@@ -10,6 +10,7 @@
 .bowser__logo {
   opacity: 1;
   transition: opacity 1s;
+  max-width: 25%;
 
   &.is-invisible {
     opacity: 0;
@@ -19,7 +20,7 @@
 .hetic__logo {
   position: absolute;
   max-width: 50%;
-  top: 65%;
+  top: 50%;
   left: 49%;
   transform: translate(-50%,-50%);
   opacity: 0;

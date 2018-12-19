@@ -1,14 +1,14 @@
 .blackScreen {
   position: absolute;
   top: 0;
-  left:0;
+  left: 0;
   height: 100vh;
   width: 200%;
   background-color: black;
   transform: translateX(-200vw);
   transition: transform 1.5s;
 
-  &.is-changed{
+  &.is-changed {
     transform: translate(200vw);
   }
   z-index: 3;
@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   padding-top: 40px;
 
   &.add-comics {
@@ -51,9 +51,7 @@
     background-size: cover;
   }
 
-  
-  
-  .quiz__logo{
+  .quiz__logo {
     position: absolute;
     top: 7vh;
     left: 50%;
@@ -63,7 +61,9 @@
 
   .question__score {
     color: #fff;
-    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000,
+      0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000,
+      -1px 1px 0 #000000;
     position: absolute;
     top: 100px;
     display: flex;
@@ -87,38 +87,34 @@
       display: flex;
       flex-wrap: wrap;
 
-      
-
-    .reply {
-      height: 20vh;
-      width: 30vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin-top: 30px;
-      margin-left: 30px;
-
-      &.reply--left{
-        margin-left: 90px;
-      }
-
-      .reply__border{
-        position: absolute;
-      }
-
-      .question__reply {
-        margin-bottom: 20px;
-      }
-
-      .reply__touch {
+      .reply {
+        height: 20vh;
+        width: 30vw;
         display: flex;
-        justify-content: space-around;
-        width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 30px;
+        margin-left: 30px;
+
+        &.reply--left {
+          margin-left: 90px;
+        }
+
+        .reply__border {
+          position: absolute;
+        }
+
+        .question__reply {
+          margin-bottom: 20px;
+        }
+
+        .reply__touch {
+          display: flex;
+          justify-content: space-around;
+          width: 100%;
+        }
       }
     }
-
-  }
-
   }
 }

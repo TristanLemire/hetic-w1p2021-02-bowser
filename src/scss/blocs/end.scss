@@ -7,13 +7,110 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
+  background: url(../img/end.png) no-repeat;
+  background-size: cover;
 
-  .end__score{
+  .end__score {
     margin-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 60%;
+    color: #fff;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000,
+      0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000,
+      -1px 1px 0 #000000;
+    font-size: 30px;
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+  }
+
+  .home__return {
+    color: #fff;
+    text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000,
+      0 -2px 0 #000000, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000,
+      -1px 1px 0 #000000;
+    margin-top: 75px;
+    font-size: 30px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .end__title {
+    font-size: 100px;
+    background: -webkit-linear-gradient(#fdc830, #f37335);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 75px;
+  }
+
+  .is-winner {
+    animation: glitch-1 2s infinite linear;
+    background: -webkit-linear-gradient();
+    background: linear-gradient(
+      330deg,
+      #cc2b1d,
+      #ec6c3e,
+      #fdf552,
+      #55b836,
+      #439cf7,
+      #000c7e,
+      #271296
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+  }
+}
+
+@keyframes glitch-1 {
+  0%,
+  2%,
+  5%,
+  42%,
+  45%,
+  72%,
+  75%,
+  100% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+  }
+  3% {
+    opacity: 0.8;
+    transform: scaleY(2);
+  }
+  43% {
+    opacity: 0.8;
+    transform: scaleX(1.3);
+  }
+  73% {
+    opacity: 8;
+    transform: rotate(5deg) scale(1);
+  }
+}
+
+@keyframes colorChange {
+  0% {
+    color: hsl(0, 60%, 40%);
+  }
+  25% {
+    color: hsl(90, 60%, 40%);
+  }
+  50% {
+    color: hsl(180, 60%, 40%);
+  }
+  75% {
+    color: hsl(270, 60%, 40%);
+  }
+  100% {
+    color: hsl(360, 60%, 40%);
   }
 }

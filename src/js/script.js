@@ -54,7 +54,8 @@ function startGame() {
         var player1score = document.getElementById("player1__score");
         var player2score = document.getElementById("player2__score");
         var question = document.getElementById('question');
-
+        var failSound = document.getElementById('failSound');
+        var winSound = document.getElementById('winSound');
 
         //Base de données des questions.
         var questions = [
@@ -286,10 +287,12 @@ function startGame() {
 
                 if (player1["score"] > player2["score"]) {
                   resultplayer1.innerHTML = "GEEKMASTER!";
+                  resultplayer1.classList.add('is-winner');
                   resultplayer2.innerHTML = "NOOB...";
                 } else {
                   resultplayer1.innerHTML = "NOOB...";
                   resultplayer2.innerHTML = "GEEKMASTER!";
+                  resultplayer2.classList.add('is-winner');
                 }
 
                 endScorePlayer1.innerHTML = player1["score"] + " pts";
@@ -389,8 +392,9 @@ function startGame() {
           //si la réponse et égale à la réponse attendue
           if (reply === goodReply) {
             //le joueur gagne 1 point
+            winSound.play();
             player["score"] = player["score"] + 100;
-
+            
             // je change d'évènement
             idQuestion = changeEvent();
 
@@ -403,8 +407,9 @@ function startGame() {
           } else {
             // si le joueur se trompe, l'autre joueur gagne 1 point
             opponent["score"] = opponent["score"] + 100;
+            failSound.play();
             idQuestion = changeEvent();
-
+            
             /*console.log(
             "score: joueur 1:",
             player1["score"],
