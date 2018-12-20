@@ -492,7 +492,7 @@ function startGame() {
 
 var questions = [
   {
-    question: "Qui est le père de Luck Skywalker ? ",
+    question: "Qui est le père de Luke Skywalker ? ",
     reply1: "Dark Vador",
     reply2: "Jar Jar",
     reply3: "Obi-Wan",
@@ -585,7 +585,7 @@ var questions = [
   },
   {
     question:
-      " Quelle divinité membre des avengers est devenue une femme ?",
+      " Quelle divinité membre des Avengers est devenue une femme ?",
     reply1: "Black Widow",
     reply2: "Iron man",
     reply3: "Hulk",
@@ -609,7 +609,7 @@ var questions = [
     reply2: "Ghostbusters",
     reply3: "Fantômes en fête",
     reply4: "Space Jam",
-    goodReply: "Ghostbusters - SOS Fantômes",
+    goodReply: "Ghostbusters",
     className: "movie"
   },
   {
@@ -670,7 +670,7 @@ var questions = [
     className: "movie"
   },
   {
-    question: "Quel est le célèbre couple de détective du paranormal ?",
+    question: "Quel est le célèbre couple de détectives du paranormal ?",
     reply1: "Mulder et Scully",
     reply2: "Sherlock et Dr. Watson",
     reply3: "Castle et Beckett ",
@@ -688,7 +688,7 @@ var questions = [
     className: "videogame"
   },
   {
-    question: "Dans Mortal Kombat, quel ninja qui maîtrise le feu ?",
+    question: "Dans Mortal Kombat, quel ninja maîtrise le feu ?",
     reply1: "Scorpion",
     reply2: "Raiden",
     reply3: "Kung Lao",
@@ -706,7 +706,7 @@ var questions = [
     className: "videogame"
   },
   {
-    question: "Quelle est la monnaie des sims ?",
+    question: "Quelle est la monnaie des Sims ?",
     reply1: "Le Simcash",
     reply2: "Le Simflouz",
     reply3: "Le Simdollar",
@@ -764,7 +764,7 @@ var questions = [
   },
   {
     question:
-      "Dans la série Doctor Who, qu'est ce qu'il y a d'écrit sur le Tardis ?",
+      "Dans la série Doctor Who, qu'y a-t-il d'écrit sur le Tardis ?",
     reply1: "Police Box",
     reply2: "Police Public Call Box",
     reply3: "Police Call Box",
