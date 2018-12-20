@@ -32,6 +32,10 @@
     font-size: 30px;
     margin-bottom: 6vh;
     color: rgb(0, 0, 0);
+    animation-duration: .8s;
+    animation-name: changewidth;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
   }
 
   .home__tuto {
@@ -145,5 +149,15 @@ body::before {
   73% {
     opacity: 8;
     transform: rotate(5deg) scale(1);
+  }
+}
+
+@keyframes changewidth {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
   }
 }

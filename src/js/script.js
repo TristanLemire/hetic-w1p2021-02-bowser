@@ -1,18 +1,27 @@
-//tableau des questions deja posées
+function removeClass(question, tab) {
+  tab.forEach(element => {
+    question.classList.remove(element);
+  });
+}
 oxo.screens.loadScreen("start", function() {
   oxo.inputs.cancelKeysListeners(["space", "s", "l"]);
   var bowserLogo = document.getElementById("bowser__logo");
   var heticLogo = document.getElementById("hetic__logo");
+  var bowserSound = document.getElementById("bowserSound");
+    bowserSound.play();
   setTimeout(function() {
     bowserLogo.classList.add("is-invisible");
-
+    
     setTimeout(function() {
+      var gameboySound = document.getElementById("gameboySound");
+      gameboySound.play();
       heticLogo.classList.add("is-visible");
       setTimeout(function() {
+       
         heticLogo.classList.remove("is-visible");
-      }, 3000);
-    }, 1000);
-  }, 3000);
+      }, 1000);
+    }, 1200);
+  }, 4500);
   setTimeout(function() {
     oxo.screens.loadScreen("home", function() {
       startGame();
@@ -20,7 +29,6 @@ oxo.screens.loadScreen("start", function() {
   }, 8000);
 });
 
-//Si pression sur space afficher game.html
 function startGame() {
   var buttonTuto = document.getElementById("button__tuto");
   buttonTuto.addEventListener("click", function() {
@@ -50,11 +58,9 @@ function startGame() {
         var gameSound = document.getElementById("gameSound");
         gameSound.play();
         oxo.inputs.cancelKeysListeners(["space", "s", "l"]);
-        //object joueur1 et 2
         var player1 = { name: "player 1", score: 0 };
         var player2 = { name: "player 2", score: 0 };
 
-        //récupération des éléments de l'html
         var questionHTML = document.getElementById("question__question");
         var reply1 = document.getElementById("question__reply1");
         var reply2 = document.getElementById("question__reply2");
@@ -68,9 +74,8 @@ function startGame() {
         var questionBloc = document.getElementById("question__bloc");
         var flash = document.getElementById("flash");
         var superman = document.getElementById("superman");
-        var minigameBloc =document.getElementById('minigame__bloc');
+        var minigameBloc = document.getElementById("minigame__bloc");
 
-        //Base de données des questions.
         var questions = [
           {
             question: "Qui est le père de Luck Skywalker ? ",
@@ -254,20 +259,196 @@ function startGame() {
             question: "Quel est le célèbre couple de détective du paranormal ?",
             reply1: "Mulder et Scully",
             reply2: "Sherlock et Dr. Watson",
-            reply3: "Rick Castle et Kate Beckett",
+            reply3: "Castle et Beckett ",
             reply4: "Minus et Cortex",
             goodReply: "Mulder et Scully",
             className: "sf"
+          },
+          {
+            question: "Dans Minecraft, combien y a-t-il de sortes d'épée ?",
+            reply1: "1",
+            reply2: "5",
+            reply3: "9",
+            reply4: "7",
+            goodReply: "5",
+            className: "videogame"
+          },
+          {
+            question: "Dans Mortal Kombat, quel ninja qui maîtrise le feu ?",
+            reply1: "Scorpion",
+            reply2: "Raiden",
+            reply3: "Kung Lao",
+            reply4: "Sub Zero",
+            goodReply: "Scorpion",
+            className: "videogame"
+          },
+          {
+            question: "Qui est le personnage principal de Street Fighter ?",
+            reply1: "Bison",
+            reply2: "Ken",
+            reply3: "Ryu",
+            reply4: "Vega",
+            goodReply: "Ryu",
+            className: "videogame"
+          },
+          {
+            question: "Quelle est la monnaie des sims ?",
+            reply1: "Le Simcash",
+            reply2: "Le Simflouz",
+            reply3: "Le Simdollar",
+            reply4: "La Simmoney",
+            goodReply: "Le Simflouz",
+            className: "videogame"
+          },
+          {
+            question: "La mort de qui Max Payne cherche-t-il à venger ?",
+            reply1: "Sa femme",
+            reply2: "Sa fille",
+            reply3: "Son meilleur ami",
+            reply4: "Son père",
+            goodReply: "Sa femme",
+            className: "videogame"
+          },
+          {
+            question: "Quel est le titre original des Dents de la mer ?",
+            reply1: "Teeth of the sea",
+            reply2: "Shark Attack",
+            reply3: "Jaws",
+            reply4: "Law of sea",
+            goodReply: "Jaws",
+            className: "movie"
+          },
+          {
+            question:
+              "Quel film de Night Shyamalan fait référence aux comics ?",
+            reply1: "Signes",
+            reply2: "Sixième Sens",
+            reply3: "Incassable",
+            reply4: "Le village",
+            goodReply: "Incassable",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans le film Matrix, quelle pilule Neo va-t-il choisir ?",
+            reply1: "La pilule bleue",
+            reply2: "La pilule verte",
+            reply3: "La pilule rouge",
+            reply4: "La pilule jaune",
+            goodReply: "La pilule rouge",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans le film Blade Runner, comment s'appellent les robots à l'apparence humaine ?",
+            reply1: "Les prédicants",
+            reply2: "Les réplicants",
+            reply3: "Les pélicans",
+            reply4: "Les gallicans",
+            goodReply: "Les réplicants",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans la série Doctor Who, qu'est ce qu'il y a d'écrit sur le Tardis ?",
+            reply1: "Police Box",
+            reply2: "Police Public Call Box",
+            reply3: "Police Call Box",
+            reply4: "Tardis",
+            goodReply: "Police Public Call Box",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans Interstellar, que représente une heure sur la planète Miller ?",
+            reply1: "24h terrestres",
+            reply2: "7 mois terrestres",
+            reply3: "7 années terrestres",
+            reply4: "12 années terrestres",
+            goodReply: "7 années terrestres",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans la planète des singes, comment s'appelle le chimpanzé femelle qui sauve Ulysse Mérou ?",
+            reply1: "Nova",
+            reply2: "Jinn",
+            reply3: "Zira",
+            reply4: "Zaram",
+            goodReply: "Zira",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans Star Trek :la Nouvelle Génération, pour combler son handicap, Geordi forge :",
+            reply1: "Un bras articulé Neri",
+            reply2: "Les lunettes Visor",
+            reply3: "L'oeil bionique Visto",
+            reply4: "L'appareil auditif Nest",
+            goodReply: "Les lunettes Visor",
+            className: "movie"
+          },
+          {
+            question:
+              "Dans l'Empire contre-attaque, comment s'appelle la cité des Nuages ?",
+            reply1: "Coruscant",
+            reply2: "Dagobah",
+            reply3: "Bespin",
+            reply4: "Hoth",
+            goodReply: "Bespin",
+            className: "movie"
+          },
+          {
+            question: "Dans Un nouvel espoir, qui s'occupe de Luke ?",
+            reply1: "Obi-Wan",
+            reply2: "Sénateur Organa",
+            reply3: "Han Solo",
+            reply4: "Owens Lars",
+            goodReply: "Obi-Wan",
+            className: "movie"
+          },
+          {
+            question:
+              "Au début de la série Game of thrones, qui est sur le trône ?",
+            reply1: "Aegon le conquérant",
+            reply2: "Aerys le Roi fou",
+            reply3: "Robert Baratheon",
+            reply4: "Tywin Lannister",
+            goodReply: "Robert Baratheon",
+            className: "movie"
+          },
+          {
+            question: "Ramsay Snow est le fils de :",
+            reply1: "Tywin Lannister",
+            reply2: "Petyr Baelish",
+            reply3: "Roose Bolton",
+            reply4: "Eddard Stark",
+            goodReply: "Roose Bolton",
+            className: "movie"
+          },
+          {
+            question: "Dans quelle auberge les 4 hobbits rencontrent Aragorn ?",
+            reply1: " Au Chien noir",
+            reply2: "Au Poney fringant",
+            reply3: "Au gris poil",
+            reply4: "Au Cul-de-sac",
+            goodReply: "Au Poney fringant",
+            className: "fantasy"
+          },
+          {
+            question: "Combien y a-t-il de Nazguls ?",
+            reply1: "3",
+            reply2: "13",
+            reply3: "7",
+            reply4: "9",
+            goodReply: "9",
+            className: "fantasy"
           }
         ];
 
         player1score.innerHTML = 0;
         player2score.innerHTML = 0;
 
-        /*----------------------------------function checkRand----------------------------------*/
-        //function qui vérifie si une question a déjà été posée
-
-        console.log(oldQuestions.length);
         function checkRand() {
           if (oldQuestions.length == 11) {
             oldQuestions = [];
@@ -320,13 +501,11 @@ function startGame() {
             }, 500);
           } else {
             do {
-              //récupérer un nombre aléatoire entre 0 et la longueur du tableau
               var randQuestion = Math.floor(
                 Math.random() * (questions.length - 0) + 0
               );
-              //si le nombre aléatoire généré ne se trouve pas dans le tableau
+
               if (oldQuestions.indexOf(randQuestion) == -1) {
-                //je retourne le nombre aléatoire
                 return randQuestion;
               } else {
                 result = -1;
@@ -335,124 +514,109 @@ function startGame() {
           }
         }
 
-        /*----------------------------------function changeEvent----------------------------------*/
         function changeEvent() {
-          // Création d'un nombre aléatoire pour le choix de l'évènement.
           var randEvent = Math.floor(Math.random() * (10 - 1) + 1);
-          // Si randEvent et supérieur ou égale à 8 je lance un minijeux.
-          if (randEvent >= 8) {
-            //affichage
-            randQuestion = -1;
-            questionHTML.innerHTML = "";
-            reply1.innerHTML = "";
-            reply2.innerHTML = "";
-            reply3.innerHTML = "";
-            reply4.innerHTML = "";
-            questionBloc.style.display = "none";
-            question.classList.remove("add-comics");
-            question.classList.remove("add-sf");
-            question.classList.remove("add-videogame");
-            question.classList.remove("add-fantasy");
-            question.classList.remove("add-movie");
-            question.classList.add("add-minigame");
-            superman.style.display= "block";
-            flash.style.display= "block";
-            console.log("ploppllp", question.className);
-            minigameBloc.style.display = 'flex';
-            //sinon je lance un question
-          } else {
-            superman.style.display= "none";
-            flash.style.display= "none";
-            questionBloc.style.display = "flex";
-            minigameBloc.style.display = 'none';
-            // Création d'un nombre aléatoire pour le choix des question.
-            randQuestion = checkRand();
-            //je push le nombre aléatoire dans le tableau des questions déjà posées
-            oldQuestions.push(randQuestion);
-            console.log(oldQuestions.length);
-            //affichage
-            if (questions[randQuestion]["className"] == "comics") {
-              question.classList.add("add-comics");
-              question.classList.remove("add-sf");
-              question.classList.remove("add-videogame");
-              question.classList.remove("add-fantasy");
-              question.classList.remove("add-movie");
-              question.classList.remove("add-minigame");
-            } else if (questions[randQuestion]["className"] == "sf") {
-              question.classList.remove("add-comics");
-              question.classList.add("add-sf");
-              question.classList.remove("add-videogame");
-              question.classList.remove("add-fantasy");
-              question.classList.remove("add-movie");
-              question.classList.remove("add-minigame");
-            } else if (questions[randQuestion]["className"] == "videogame") {
-              question.classList.remove("add-comics");
-              question.classList.remove("add-sf");
-              question.classList.add("add-videogame");
-              question.classList.remove("add-fantasy");
-              question.classList.remove("add-movie");
-              question.classList.remove("add-minigame");
-            } else if (questions[randQuestion]["className"] == "fantasy") {
-              question.classList.remove("add-comics");
-              question.classList.remove("add-sf");
-              question.classList.remove("add-videogame");
-              question.classList.add("add-fantasy");
-              question.classList.remove("add-movie");
-              question.classList.remove("add-minigame");
-            } else if (questions[randQuestion]["className"] == "movie") {
-              question.classList.remove("add-comics");
-              question.classList.remove("add-sf");
-              question.classList.remove("add-videogame");
-              question.classList.remove("add-fantasy");
-              question.classList.add("add-movie");
-              question.classList.remove("add-minigame");
-            }
 
+          if (randEvent >= 8) {
+            randQuestion = -1;
+            questionBloc.style.display = "none";
+            var tabClass = [
+              "add-comics",
+              "add-sf",
+              "add-videogame",
+              "add-fantasy",
+              "add-movie"
+            ];
+            removeClass(question, tabClass);
+            question.classList.add("add-minigame");
+            superman.style.display = "block";
+            flash.style.display = "block";
+
+            minigameBloc.style.display = "flex";
+          } else {
+            superman.style.display = "none";
+            flash.style.display = "none";
+            questionBloc.style.display = "flex";
+            minigameBloc.style.display = "none";
+
+            randQuestion = checkRand();
+
+            oldQuestions.push(randQuestion);
+
+            if (questions[randQuestion]["className"] == "comics") {
+              var tabClass1 = [
+                "add-minigame",
+                "add-sf",
+                "add-videogame",
+                "add-fantasy",
+                "add-movie"
+              ];
+              removeClass(question, tabClass1);
+              question.classList.add("add-comics");
+            } else if (questions[randQuestion]["className"] == "sf") {
+              var tabClass2 = [
+                "add-minigame",
+                "add-comics",
+                "add-videogame",
+                "add-fantasy",
+                "add-movie"
+              ];
+              removeClass(question, tabClass2);
+              question.classList.add("add-sf");
+            } else if (questions[randQuestion]["className"] == "videogame") {
+              var tabClass3 = [
+                "add-minigame",
+                "add-comics",
+                "add-sf",
+                "add-fantasy",
+                "add-movie"
+              ];
+              removeClass(question, tabClass3);
+              question.classList.add("add-videogame");
+            } else if (questions[randQuestion]["className"] == "fantasy") {
+              var tabClass4 = [
+                "add-minigame",
+                "add-comics",
+                "add-sf",
+                "add-videogame",
+                "add-movie"
+              ];
+              removeClass(question, tabClass4);
+              question.classList.add("add-fantasy");
+            } else if (questions[randQuestion]["className"] == "movie") {
+              var tabClass5 = [
+                "add-minigame",
+                "add-comics",
+                "add-sf",
+                "add-videogame",
+                "add-fantasy"
+              ];
+              removeClass(question, tabClass5);
+              question.classList.add("add-movie");
+            }
             questionHTML.innerHTML = questions[randQuestion]["question"];
             reply1.innerHTML = questions[randQuestion]["reply1"];
             reply2.innerHTML = questions[randQuestion]["reply2"];
             reply3.innerHTML = questions[randQuestion]["reply3"];
             reply4.innerHTML = questions[randQuestion]["reply4"];
-            console.log("ploppllp", question.className);
           }
           return randQuestion;
         }
 
-        /*----------------------------------function checkReply----------------------------------*/
-        //function qui verifier les reponse
         function checkReply(reply, goodReply, player, opponent) {
-          //si la réponse et égale à la réponse attendue
           if (reply === goodReply) {
-            //le joueur gagne 1 point
             winSound.play();
             player["score"] = player["score"] + 100;
 
-            // je change d'évènement
             idQuestion = changeEvent();
-
-            /*console.log(
-            "score: joueur 1:",
-            player1["score"],
-            "joueur 2:",
-            player2["score"]
-          );*/
           } else {
-            // si le joueur se trompe, l'autre joueur gagne 1 point
             opponent["score"] = opponent["score"] + 100;
             failSound.play();
             idQuestion = changeEvent();
-
-            /*console.log(
-            "score: joueur 1:",
-            player1["score"],
-            "joueur 2:",
-            player2["score"]
-          );*/
           }
           changeScore();
         }
 
-        /*----------------------------------function changeScore----------------------------------*/
         function changeScore() {
           player1score.innerHTML = player1["score"] + " pts";
           player2score.innerHTML = player2["score"] + " pts";
@@ -478,27 +642,18 @@ function startGame() {
           changeScore();
         }
 
-        //changement d'évènement
         var idQuestion = changeEvent();
         var countPlayer1 = 0;
         var countPlayer2 = 0;
         var countMovePlayer1 = 0;
         var countMovePlayer2 = 0;
 
-        console.log("ploppllp", idQuestion);
-
         function activateKey() {
-          console.log("ploppllp", question.className);
           if (
             oxo.screens.currentScreen === "game" &&
             question.className != "question add-minigame"
           ) {
-            console.log("ploppllp", question.className);
-            //si le joueur 1 clique sur a
             oxo.inputs.listenKey("a", function() {
-              console.log("touche a");
-              console.log(oxo.screens.currentScreen);
-              // je vérifie sa réponse
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -523,7 +678,6 @@ function startGame() {
               }, 1350);
             });
             oxo.inputs.listenKey("z", function() {
-              console.log("touche z");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -548,7 +702,6 @@ function startGame() {
               }, 1350);
             });
             oxo.inputs.listenKey("e", function() {
-              console.log("touche e");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -573,7 +726,6 @@ function startGame() {
               }, 1350);
             });
             oxo.inputs.listenKey("r", function() {
-              console.log("touche r");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -599,7 +751,6 @@ function startGame() {
             });
 
             oxo.inputs.listenKey("u", function() {
-              console.log("touche u");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -624,7 +775,6 @@ function startGame() {
               }, 1350);
             });
             oxo.inputs.listenKey("i", function() {
-              console.log("touche i");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -649,7 +799,6 @@ function startGame() {
               }, 1350);
             });
             oxo.inputs.listenKey("o", function() {
-              console.log("touche o");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -674,7 +823,6 @@ function startGame() {
               }, 1350);
             });
             oxo.inputs.listenKey("p", function() {
-              console.log("touche p");
               oxo.inputs.cancelKeysListeners([
                 "a",
                 "z",
@@ -700,12 +848,12 @@ function startGame() {
             });
           } else {
             oxo.inputs.listenKey("s", function() {
-              countMovePlayer1 = 130*(countPlayer1 + 1) + 'px';
-              console.log('plop42',countMovePlayer1);
-              flash.style.left = countMovePlayer1; 
-              console.log("touche s");
+              countMovePlayer1 = 130 * (countPlayer1 + 1) + "px";
+
+              flash.style.left = countMovePlayer1;
+
               countPlayer1 = countPlayer1 + 1;
-              console.log("plop", countPlayer1);
+
               if (countPlayer1 == 10) {
                 oxo.inputs.cancelKeysListeners(["s", "l"]);
                 blackScreen.classList.toggle("is-changed");
@@ -718,12 +866,12 @@ function startGame() {
               }
             });
             oxo.inputs.listenKey("l", function() {
-              countMovePlayer2 = 130*(countPlayer2 + 1) + 'px';
-              console.log('plop42',countMovePlayer2);
-              superman.style.left = countMovePlayer2; 
-              console.log("touche l");
+              countMovePlayer2 = 130 * (countPlayer2 + 1) + "px";
+
+              superman.style.left = countMovePlayer2;
+
               countPlayer2 = countPlayer2 + 1;
-              console.log("plop", countPlayer2);
+
               if (countPlayer2 == 10) {
                 oxo.inputs.cancelKeysListeners(["s", "l"]);
                 blackScreen.classList.toggle("is-changed");
