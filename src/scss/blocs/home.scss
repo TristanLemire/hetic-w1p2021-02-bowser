@@ -33,7 +33,7 @@
     margin-bottom: 6vh;
     color: rgb(0, 0, 0);
     animation-duration: .8s;
-    animation-name: changewidth;
+    animation-name: opacityAltern;
     animation-iteration-count: infinite;
     animation-direction: alternate;
   }
@@ -152,7 +152,7 @@ body::before {
   }
 }
 
-@keyframes changewidth {
+@keyframes  opacityAltern {
   from {
     opacity: 1;
   }
